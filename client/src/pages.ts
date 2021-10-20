@@ -1,6 +1,6 @@
 import { AboutPage } from "./pages/AboutPage/AboutPage";
-import { EmployeeListPage } from "./pages/EmployeeListPage/EmployeeListPage";
-import { HomePage } from "./pages/HomePage/HomePage";
+import EmployeeListPage  from "./pages/EmployeeListPage/EmployeeListPage";
+import HomePage from "./pages/HomePage/HomePage";
 
 export const mainPages = [
   {
@@ -14,8 +14,8 @@ export const mainPages = [
     component: EmployeeListPage,
   },
   {
-    title: 'About',
-    path: '/about',
-    component: AboutPage
-  }
+    title: "About",
+    path: "/about",
+    component: AboutPage,
+  },
 ];

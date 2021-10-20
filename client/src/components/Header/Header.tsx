@@ -1,26 +1,22 @@
 import React from "react";
-import { Navbar, Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { mainPages } from "../../pages";
-
-export class Header extends React.Component {
+import { Menu, Layout } from "antd";
+const { Header } = Layout;
+export class NavHeader extends React.Component {
   render() {
     return (
-      <Navbar bg="light" expand="xl">
-        <Container>
-          <Navbar.Brand>SoftTech HR</Navbar.Brand>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="me-auto">
-              {mainPages.map((page) => (
-                <Nav.Link as={Link} key={page.path} to={page.path}>
-                  {page.title}
-                </Nav.Link>
-              ))}
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <Header>
+        <div className="logo" />
+        SoftTech HR
+        <Menu theme="light" mode="horizontal" defaultSelectedKeys={["2"]}>
+          {mainPages.map((page) => (
+            <Menu.Item key={page.path}>
+              <Link to={page.path}>{page.title}</Link>
+            </Menu.Item>
+          ))}
+        </Menu>
+      </Header>
     );
   }
 }

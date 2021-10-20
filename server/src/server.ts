@@ -1,3 +1,5 @@
+import { jobRouter } from './routers/jobs.router';
+import { departmentRouter } from './routers/departments';
 import express from "express";
 import cors from "cors";
 import expressJwt from "express-jwt";
@@ -14,5 +16,7 @@ app.use(express.json());
 // app.use(expressJwt({secret: JWT_SECRET}).unless({path: '/'}));
 
 app.use("/api/employees", employeeRouter);
+app.use("/api/departments", departmentRouter);
+app.use("/api/jobs", jobRouter);
 
 app.listen(PORT, () => console.log(`Server is up at ${PORT}`));

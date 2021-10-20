@@ -1,32 +1,29 @@
-import "bootstrap/dist/css/bootstrap.min.css";
-import React from "react";
-import { Container, Row } from "react-bootstrap";
+import React, { useState } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import { AppState, StateContext } from "./app-state";
 import "./App.css";
-import { Header } from "./components/Header/Header";
+import { NavHeader } from "./components/Header/Header";
 import { mainPages } from "./pages";
-import { DetailsPage } from "./pages/DetailsPage/DetailsPage";
+import DetailsPage from "./pages/DetailsPage/DetailsPage";
+import { AppContextProvider, IAppState, initialAppState } from "./app-context";
+import { Layout } from "antd";
+const { Footer, Content } = Layout;
 
-export default class App extends React.Component<{}, AppState> {
-  state: AppState = {
-    message: "hello there!",
-    employees: [],
+export default function App() {
+  const [appState, setAppState] = useState<IAppState>(initialAppState);
+
+  const appContextValues = {
+    appState,
+    setAppState: (newAppState: Partial<IAppState>) => {
+      setAppState(newAppState as any);
+    },
   };
-
-  setAppState = (newAppState: Partial<AppState>) => {
-    this.setState(newAppState as any);
-  };
-
-  render() {
-    return (
-      <BrowserRouter>
-        <StateContext.Provider
-          value={{ appState: this.state, setAppState: this.setAppState }}
-        >
-          <Header />
-          <Container className="content">
-            <Row>
+  return (
+    <BrowserRouter>
+      <AppContextProvider value={appContextValues}>
+        <Layout>
+          <NavHeader />
+          <Layout>
+            <Content style={{ padding: "0 5rem" }}>
               <Switch>
                 {mainPages.map((page) => (
                   <Route
@@ -43,10 +40,11 @@ export default class App extends React.Component<{}, AppState> {
                   <Redirect to="/" />
                 </Route>
               </Switch>
-            </Row>
-          </Container>
-        </StateContext.Provider>
-      </BrowserRouter>
-    );
-  }
+            </Content>
+            <Footer style={{ textAlign: "center" }}>footer</Footer>
+          </Layout>
+        </Layout>
+      </AppContextProvider>
+    </BrowserRouter>
+  );
 }
