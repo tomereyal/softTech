@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
-import { NavHeader } from "./components/Header/Header";
+import NavHeader from "./components/Header/NavHeader";
 import { mainPages } from "./pages";
 import DetailsPage from "./pages/DetailsPage/DetailsPage";
 import { AppContextProvider, IAppState, initialAppState } from "./app-context";
@@ -20,7 +20,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <AppContextProvider value={appContextValues}>
-        <Layout>
+        <Layout className={"layout"}>
           <NavHeader />
           <Layout>
             <Content style={{ padding: "0 5rem" }}>

@@ -1,7 +1,17 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
+
+.layout {
+  height: 100vh;
+}
 
 .content {
-    background: #efefef;
-    min-height: calc(100vh - 56px);
-    padding: 32px;
+  background: #efefef;
+  min-height: calc(100vh - 56px);
+  padding: 32px;
+}
+
+.center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
